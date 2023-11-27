@@ -46,15 +46,10 @@ void initSnake() {
     // Inicializar la serpiente en algún lugar cerca del centro de la matriz de LED
     // La serpiente está representada por un bloque 2x2 LEDs
     int baseRow = LED_MATRIX_0_WIDTH * 10;
-    snakeLEDs[0] = LED_MATRIX_0_WIDTH + 15; // Primer LED
-    snakeLEDs[1] = snakeLEDs[1] + 1;     // Segundo LED a la derecha del primero
-    snakeLEDs[2] = snakeLEDs[1] + LED_MATRIX_0_WIDTH; // Tercer LED debajo del primero
-    snakeLEDs[3] = snakeLEDs[3] + 1;     // Cuarto LED a la derecha del tercero
-    
-    int position1 = random_y * LED_MATRIX_0_WIDTH + random_x;
-        int position2 = position1 + 1;
-        int position3 = position1 + LED_MATRIX_0_WIDTH;
-        int position4 = position3 + 1;
+    snakeLEDs[0] = (LED_MATRIX_0_WIDTH * 13) + 15; // Primer LED
+    snakeLEDs[1] = (LED_MATRIX_0_WIDTH * 13) + 16;     // Segundo LED a la derecha del primero
+    snakeLEDs[2] = (LED_MATRIX_0_WIDTH * 14) + 15;; // Tercer LED debajo del primero
+    snakeLEDs[3] = snakeLEDs[2] + 1;     // Cuarto LED a la derecha del tercero
 
     // Encender los LEDs en las posiciones iniciales de la serpiente a color rojo
     for (int i = 0; i < 4; i++) {
@@ -70,10 +65,13 @@ void initSnake() {
 int moveSnake() {
     if (dy == 1) {
         new_head_index = (snakeLEDs[head] + LED_MATRIX_0_WIDTH);
+        new_head_index = (snakeLEDs[head + 1] + LED_MATRIX_0_WIDTH);
     } else if (dy == -1) {
         new_head_index = (snakeLEDs[head] - LED_MATRIX_0_WIDTH);
+        new_head_index = (snakeLEDs[head + 1] - LED_MATRIX_0_WIDTH);
     } else if (dx == 1) {
         new_head_index = (snakeLEDs[head] + 1);
+        new_head_index = (snakeLEDs[head + 1] + 1);
     } else if (dx == -1) {
         new_head_index = (snakeLEDs[head] -1);
     }
